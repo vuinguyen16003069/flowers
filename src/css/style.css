@@ -2321,6 +2321,7 @@ body::before {
 
 body.day {
   background: linear-gradient(to bottom, #87ceeb 0%, #98fb98 50%, #87ceeb 100%);
+  transition: background 2s ease-in-out;
 }
 
 body.day::before {
@@ -2329,6 +2330,7 @@ body.day::before {
 
 body.day .night {
   background: radial-gradient(ellipse at top, rgba(135, 206, 235, 0.8), rgba(152, 251, 152, 0.6));
+  transition: background 2s ease-in-out;
 }
 
 #toggle-mode {
@@ -2363,4 +2365,42 @@ body.day #toggle-mode:hover {
 .flower:hover {
   transform: scale(1.05);
   transition: transform 0.3s ease;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.flower:hover::after {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, white, transparent);
+  border-radius: 50%;
+  animation: sparkle 1s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.2);
+  }
 }
